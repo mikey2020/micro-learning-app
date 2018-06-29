@@ -5,6 +5,7 @@ development:
   pool: 2
   username: your_username
   password: your_password
+  host: <%= ENV['DATABASE_HOST'] %>
 
 production:
   adapter: postgresql

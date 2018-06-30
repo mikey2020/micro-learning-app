@@ -1,0 +1,8 @@
+require 'sinatra/activerecord'
+
+
+class Page < ActiveRecord::Base
+    belongs_to :category
+end
+
+

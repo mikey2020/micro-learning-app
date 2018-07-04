@@ -1,4 +1,5 @@
 require 'sinatra/activerecord'
+require_relative './category.rb'
 
 
 class Page < ActiveRecord::Base

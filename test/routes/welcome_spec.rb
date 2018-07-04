@@ -5,8 +5,8 @@ RSpec.describe App  do
 
   it 'should display index page' do
     get '/'
+    
     expect(last_response).to be_ok
-    expect(last_response.body).to include("Super Learning")
-    expect(last_response.body).to include("Welcome Super Micro Learning")
+    expect(last_response.body).to include("Welcome to micro learning app")
   end
 end

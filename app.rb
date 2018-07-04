@@ -28,14 +28,20 @@ class App < Sinatra::Application
     end
 
     before '/home' do
-        authenticate('/home')
+        authenticate
+    end
+
+    before '/user/login' do
+        if session[:user_id]
+            redirect to('/home')
+        end
     end
 
     get '/home' do
         unless session[:user].nil?
             @username = session[:user].username
         end
-        "Hello #{@username}"
+        erb :home
     end
 
     get '/' do
@@ -48,6 +54,14 @@ class App < Sinatra::Application
 
     post '/user/signup' do
       create_user(params[:user])
+    end
+
+    get '/user/login' do
+        show_login_page
+    end
+
+    post '/user/login' do
+        login_user(params[:user])
     end
 
 

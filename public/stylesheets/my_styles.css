@@ -1,2 +1,9 @@
-body{background-color:#0000}
+.signup {
+  position: relative;
+  left: 500px;
+  border: #000; }
+
+select {
+  display: block !important; }
+
 /*# sourceMappingURL=my_styles.css.map */

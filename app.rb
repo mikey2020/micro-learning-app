@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'dotenv/load'
 require 'sysrandom/securerandom'
+require 'news-api'
 
 current_dir = Dir.pwd
 
@@ -8,6 +9,8 @@ Dir["#{current_dir}/controllers/*.rb"].each { |file| require file }
 Dir["#{current_dir}/helpers/*.rb"].each { |file| require file }
 
 class App < Sinatra::Application
+
+    newsapi = News.new(ENV['API_KEY'])
 
     # set :sessions, true
     enable :sessions, :logging
@@ -62,6 +65,20 @@ class App < Sinatra::Application
 
     post '/user/login' do
         login_user(params[:user])
+    end
+
+    get '/user/select' do
+      erb :"user/select_page"
+    end
+
+    get '/categories' do
+        sources = newsapi.get_sources(country: 'us', language: 'en')
+        @categories = []
+        sources.each do |source|
+            @categories.push(source.category)
+        end
+
+        erb :"user/select_page"
     end
 
 

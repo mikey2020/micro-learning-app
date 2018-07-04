@@ -9,7 +9,7 @@ gem "bcrypt"
 gem "sass"
 gem "dotenv"
 gem "sysrandom"
-gem "sprockets"
+gem "news-api"
 
 group :development do
     gem "pry"

@@ -1,0 +1,12 @@
+<h3> Customize your learning </h3>
+
+<div class="input-field col s12">
+    <select multiple>
+    <option value="" disabled selected>Choose your option</option>
+     <% @categories.uniq.each do |cat| %>
+      <option value=<%= cat %>> <%= cat %> </option>
+     <% end %>
+    </select>
+
+   <label> Select your preferred interests </label>
+</div>

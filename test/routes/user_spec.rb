@@ -10,11 +10,10 @@ RSpec.describe App  do
     expect(last_response.body).to include("email")
     expect(last_response.body).to include("password")
   end
-
+  
   it 'should display error message when username is empty' do
     post '/user/signup', params={ user: { username: "  ", email: "naruto@email.com", password: "tester123" } }
     
-    puts last_response
     expect(last_response).to be_ok
     expect(last_response.body).to include("username can't be blank")
   end
@@ -38,5 +37,26 @@ RSpec.describe App  do
     
     expect(last_response).to be_ok
     expect(last_response.body).to include("email must be valid")
+  end
+
+  it 'should display user login page' do
+    get '/user/login'
+    expect(last_response).to be_ok
+    expect(last_response.body).to include("username")
+    expect(last_response.body).to include("password")
+  end
+
+  it 'should display error message when username is empty' do
+    post '/user/login', params={ user: { username: "  ", password: "tester123" } }
+    
+    expect(last_response).to be_ok
+    expect(last_response.body).to include("Invalid username or password")
+  end
+
+  it 'should display error message when password is empty' do
+    post '/user/login', params={ user: { username: "tester", password: "" } }
+    
+    expect(last_response).to be_ok
+    expect(last_response.body).to include("Invalid username or password")
   end
 end

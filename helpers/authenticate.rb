@@ -1,5 +1,5 @@
-def authenticate(path)
+def authenticate
     if session[:user_id].nil?
-        redirect to('/user/signup')
+        redirect to('/user/login')
     end
 end

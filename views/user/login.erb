@@ -1,0 +1,24 @@
+<div class="row login">
+   <% unless @error.nil? %>
+       <p class="error_message"> <%= @error %> </p>
+   <% end %>
+    <form class="col s12" action="/user/login" method="post" >
+      <div class="row">
+        <div class="input-field col s12 m10 l5">
+          <input id="username" type="text" name="user[username]" class="validate">
+          <label for="username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m10 l5">
+          <input id="password" type="password" name="user[password]" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="">
+          <input type="submit" class="btn" value="Sign up">
+        </div>
+      </div>
+    </form>
+  </div>

@@ -3,6 +3,8 @@ require 'rspec'
 
 ENV['RACK_ENV'] = 'test'
 
+# ActiveRecord::Migration.maintain_test_schema!
+
 module RSpecMixin
   include Rack::Test::Methods
 

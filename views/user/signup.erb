@@ -1,0 +1,32 @@
+<div class="row signup">
+   <% unless @errors.nil? %>
+      <% @errors.each do |key,value|%>
+         <p class="error_message"> <%= key %> <%= value[0] %> </p>
+      <% end %>
+   <% end %>
+    <form class="col s12" action="/user/signup" method="post" >
+      <div class="row">
+        <div class="input-field col s12 m10 l5">
+          <input id="username" type="text" name="user[username]" class="validate">
+          <label for="username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m10 l5">
+          <input id="password" type="password" name="user[password]" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m10 l5">
+          <input id="email" type="email" name="user[email]" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="">
+          <input type="submit" class="btn" value="Sign up">
+        </div>
+      </div>
+    </form>
+  </div>

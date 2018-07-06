@@ -38,7 +38,7 @@ class App < Sinatra::Application
         if session[:user_id]
           categories = get_user_categories
 
-          if categories.nil?
+          if categories == []
             redirect to('/categories')
           end
 
@@ -57,7 +57,7 @@ class App < Sinatra::Application
        if session[:user_id]
         categories = get_user_categories
 
-        if categories
+        unless categories == []
           redirect to('/home')
         end
 
@@ -86,6 +86,11 @@ class App < Sinatra::Application
 
     post '/user/login' do
         login_user(params[:user])
+    end
+
+    get '/user/logout' do
+        session[:user_id] = nil
+        redirect to('/user/login')
     end
 
     get '/user/select' do

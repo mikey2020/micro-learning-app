@@ -1,24 +1,35 @@
-<div class="row login">
+<div class="row">
+   
    <% unless @error.nil? %>
        <p class="error_message"> <%= @error %> </p>
    <% end %>
+
+   <center> <h3 class="login-header"> Log in </h3> </center>
+
+   <div class="login col l5 m5 push-m3 push-l3">
     <form class="col s12" action="/user/login" method="post" >
       <div class="row">
-        <div class="input-field col s12 m10 l5">
+        <div class="input-field col s12 m10 l10 push-l1">
           <input id="username" type="text" name="user[username]" class="validate">
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12 m10 l5">
+        <div class="input-field col s12 m10 l10 push-l1">
           <input id="password" type="password" name="user[password]" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
+      <center>
       <div class="row">
         <div class="">
           <input type="submit" class="btn" value="Log in">
         </div>
       </div>
     </form>
-  </div>
+    </center>
+
+    <p> New user <a href="/user/signup">Sign up</a>
+
+   </div>
+</div>

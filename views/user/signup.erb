@@ -1,32 +1,41 @@
-<div class="row signup">
+<div class="row">
+
+  <center> <h3 class="signup-header"> Sign up for Super learning </h3> </center>
+
+  <div class="signup col m6 s10 l6 push-l3 push-m3">
    <% unless @errors.nil? %>
       <% @errors.each do |key,value|%>
          <p class="error_message"> <%= key %> <%= value[0] %> </p>
       <% end %>
    <% end %>
-    <form class="col s12" action="/user/signup" method="post" >
+    <form class="col s12 m10 push-m1" action="/user/signup" method="post" >
       <div class="row">
-        <div class="input-field col s12 m10 l5">
+        <div class="input-field col s12 m10 l10">
           <input id="username" type="text" name="user[username]" class="validate">
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12 m10 l5">
+        <div class="input-field col s12 m10 l10">
           <input id="password" type="password" name="user[password]" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12 m10 l5">
+        <div class="input-field col s12 m10 l10">
           <input id="email" type="email" name="user[email]" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
-        <div class="">
+        <div class="input-field col s5 m7 l9 ">
           <input type="submit" class="btn" value="Sign up">
         </div>
       </div>
     </form>
+    
+    <div>
+      <span class="input-field" > Already a user <a href="/user/login">Log in</a> </span>
+    <div>
   </div>
+</div>

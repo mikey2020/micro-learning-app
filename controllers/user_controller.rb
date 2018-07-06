@@ -1,5 +1,4 @@
 require 'erb'
-require 'pry'
 
 current_dir = Dir.pwd
 require "#{current_dir}/models/user.rb"

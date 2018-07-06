@@ -1,29 +1,26 @@
 current_dir = Dir.pwd
 require "#{current_dir}/models/category.rb"
 require "#{current_dir}/helpers/get_categories.rb"
-require 'pry'
 require 'dotenv/load'
 require 'news-api'
+require 'pry'
 
 def get_new_page
 
     newsapi = News.new(ENV['API_KEY'])
 
-    unless session[:user].nil?
+    if session[:user]
         @username = session[:user].username
     end
 
-    @categories = get_user_categories.map { |cat| cat.name}
-
-
+    @categories = get_user_categories.map { |cat| cat.name }
+    
     all_pages = []
     @categories.uniq.each do |cat|
         begin
             top_headlines = newsapi.get_top_headlines(category: cat,
                                                     language: 'en',
                                                     country: 'us')
-            puts top_headlines[0]
-            binding.pry
             all_pages.push(top_headlines[0])
         rescue Exception => e
             @error = e.message

@@ -12,8 +12,6 @@ Dir["#{current_dir}/helpers/*.rb"].each { |file| require file }
 
 class App < Sinatra::Application
 
-    newsapi = News.new(ENV['API_KEY'])
-
     set :show_exceptions, :after_handler
 
     # set :sessions, true
@@ -36,6 +34,15 @@ class App < Sinatra::Application
 
     before '/home' do
         authenticate
+
+        if session[:user_id]
+          categories = get_user_categories
+
+          if categories.nil?
+            redirect to('/categories')
+          end
+
+        end
     end
 
     before '/user/login' do
@@ -45,53 +52,20 @@ class App < Sinatra::Application
     end
 
     before '/categories' do
-        if session[:user_id].nil?
-            redirect to('/user/login')
+       authenticate
+
+       if session[:user_id]
+        categories = get_user_categories
+
+        if categories
+          redirect to('/home')
         end
+
+       end
     end
 
     get '/home' do
-        @user = User.find(session[:user_id])
-
-        result = Time.diff(Time.parse(@user.updated_at.to_s), Time.parse(Time.now.to_s), '%H %N %S')
-      if result[:hour] >= 24 || @user.created_at == @user.updated_at
-
-        unless session[:user].nil?
-            @username = session[:user].username
-        end
-        @categories = get_user_categories.map { |cat| cat.name}
-
-        all_pages = []
-        @categories.uniq.each do |cat|
-            begin
-                top_headlines = newsapi.get_top_headlines(category: cat,
-                                                        language: 'en',
-                                                        country: 'us')
-
-                puts top_headlines
-                all_pages.push(top_headlines[0])
-            rescue Exception => e
-                @error = e.message
-                erb :error_page
-            end
-        end
-
-        unless all_pages.nil?
-          @page_url = all_pages.sample.url
-          while @page_url == @user.last_page
-            @page_url = all_pages.sample.url
-          end
-        end
-      
-        @user.update(last_page: @page_url)
-
-        erb :home
-
-      else 
-        @page_url = @user.last_page
-
-        erb :home
-      end
+     show_home_page
     end
 
     get '/' do
@@ -119,40 +93,15 @@ class App < Sinatra::Application
     end
 
     get '/categories' do
-        begin
-          sources = newsapi.get_sources(country: 'us', language: 'en')
-
-          @categories = []
-          sources.each do |source|
-            @categories.push(source.category)
-          end
-
-          session[:categories] = @categories
-
-          erb :"user/select_page"
-        rescue Exception => e
-            @error = e.message
-            erb :error_page
-        end
+        get_categories
     end
 
     post '/categories' do
-        logger.info params
-        params[:categories].each do |cat|
-            @category = Category.where(name: cat).take
-            UserCategory.create(user_id: session[:user_id], category_id: @category.id)
-        end
-        redirect to('/home')
+        add_user_categories
     end
-
-
-    def get_user_categories
-        Category.includes(:user_categories).where(user_categories: {user_id: session[:user_id]})
-    end
-
 
     not_found do
-        'This is nowhere to be found.'
+        erb :not_found
     end
 
 

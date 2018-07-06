@@ -10,7 +10,7 @@ def create_user(user_details)
         session[:user] = @user
         session[:user_id] = @user.id
         logger.info session[:user]
-        redirect to('/home')
+        redirect to('/categories')
     else 
         @errors = @user.errors.messages
         erb :"user/signup"

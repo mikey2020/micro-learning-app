@@ -70,6 +70,9 @@ GEM
     sysrandom (1.0.5)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    time_diff (0.3.0)
+      activesupport
+      i18n
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
 
@@ -91,6 +94,7 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   sysrandom
+  time_diff
 
 BUNDLED WITH
    1.16.2

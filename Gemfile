@@ -10,6 +10,7 @@ gem "sass"
 gem "dotenv"
 gem "sysrandom"
 gem "news-api"
+gem "time_diff"
 
 group :development do
     gem "pry"

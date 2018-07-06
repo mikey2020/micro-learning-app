@@ -88,6 +88,11 @@ class App < Sinatra::Application
         login_user(params[:user])
     end
 
+    get '/user/logout' do
+        session[:user_id] = nil
+        redirect to('/user/login')
+    end
+
     get '/user/select' do
       erb :"user/select_page"
     end

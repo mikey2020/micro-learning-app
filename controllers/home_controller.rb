@@ -1,7 +1,6 @@
 current_dir = Dir.pwd
 require "#{current_dir}/models/category.rb"
 require "#{current_dir}/helpers/get_categories.rb"
-require 'pry'
 require 'dotenv/load'
 require 'news-api'
 
@@ -22,8 +21,6 @@ def get_new_page
             top_headlines = newsapi.get_top_headlines(category: cat,
                                                     language: 'en',
                                                     country: 'us')
-            puts top_headlines[0]
-            binding.pry
             all_pages.push(top_headlines[0])
         rescue Exception => e
             @error = e.message

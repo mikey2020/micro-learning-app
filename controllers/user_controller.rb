@@ -27,7 +27,8 @@ end
 def login_user(login_details)
     logger.info login_details
     @current_user = User.find_by(username: login_details[:username]).try(:authenticate, login_details[:password])
-    if @current_user
+
+    if @current_user && @current_user.authenticate(login_details[:password])
         session[:user] = @current_user
         session[:user_id] = @current_user.id
         logger.info session[:user]

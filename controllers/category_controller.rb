@@ -13,4 +13,4 @@ def add_user_categories
     end
     
     redirect to('/home')
-end
+end 

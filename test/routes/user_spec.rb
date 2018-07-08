@@ -1,7 +1,29 @@
 require_relative '../spec_helper.rb'
 require_relative '../../app.rb'
+require_relative '../../models/user.rb'
+require_relative '../../models/user_category.rb'
 
 RSpec.describe App  do
+
+  before(:context) do
+    User.delete_all
+    UserCategory.create({ user_id: 1, category_id: 1})
+    UserCategory.create({ user_id: 1, category_id: 3})
+  end
+
+  it 'should add user user to the database' do
+    post '/user/signup', params={ user: { username: "naruto", email: "naruto@email.com", password: "tester123" } },
+    { "rack.session" => { user_id: 1 } }
+
+
+    expect(last_response).to be_redirect
+    follow_redirect!
+
+    #puts last_request
+    # get '/categories' 
+    expect(last_response).to be_ok
+    expect(last_response.body).to include("Customize your learning")
+  end
 
   it 'should display user sign up page' do
     get '/user/signup'

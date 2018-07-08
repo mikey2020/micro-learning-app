@@ -7,6 +7,6 @@ RSpec.describe App  do
     get '/'
     
     expect(last_response).to be_ok
-    expect(last_response.body).to include("Welcome to micro learning app")
+    expect(last_response.body).to include("Welcome to Super micro learning app")
   end
 end

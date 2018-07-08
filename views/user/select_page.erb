@@ -1,16 +1,14 @@
-<h3> Customize your learning </h3>
+<center> <h3> Customize your learning </h3> </center>
 
-<div class="input-field col s12">
+<div class="container input-field col s12">
    <form method="post" action="/categories">
     <select multiple name="categories[]">
-    <option value="" disabled selected>Choose your option</option>
+    <option value="" disabled selected>Choose your interests</option>
      <% @categories.uniq.each do |cat| %>
       <option value=<%= cat %>> <%= cat %> </option>
      <% end %>
     </select>
 
-    <input type="submit" class="btn" value="submit">
+    <center> <input type="submit" class="btn grey darken-4" value="submit"> </center>
    <form>
-
-   <label> Select your preferred interests </label>
 </div>

@@ -31,14 +31,21 @@ select{
     margin-bottom: 50px;
 }
 
-.page-board{
+.welcome-message {
+    margin-top: 69px !important;
+}
 
-    margin-top: 10px;
-    margin-right: 30px;
-    margin-bottom: 20px;
-    margin-left: 30px;
+.page-card{
+    margin-top: 50px;
+}
+    
+.card{
+    background-color: #FFFDFD !important;
+    color: black !important;
+}
 
-    p {
-        font-size: 40px;
+.card-title{
+    a {
+        padding-left: 137px !important;
     }
 }

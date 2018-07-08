@@ -1,7 +1,7 @@
 <div class="row">
    
    <% unless @error.nil? %>
-       <p class="error_message"> <%= @error %> </p>
+       <center> <p class="error-message"> <%= @error %> </p> </center>
    <% end %>
 
    <center> <h3 class="login-header"> Log in </h3> </center>
@@ -23,7 +23,7 @@
       <center>
       <div class="row">
         <div class="">
-          <input type="submit" class="btn" value="Log in">
+          <input type="submit" class="btn grey darken-4" value="Log in">
         </div>
       </div>
     </form>

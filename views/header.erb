@@ -1,12 +1,12 @@
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper grey darken-4">
       <a href="/" class="brand-logo">SMLA</a>
       <ul id="nav-mobile" class="right">
         <% if session[:user_id] %>
           <li><a href="/user/logout">Logout</a></li>
         <% else %>
           <li><a href="/user/login">Log in</a></li>
-          <li><a href="/user/login">Sign up</a></li>
+          <li><a href="/user/signup">Sign up</a></li>
         <% end %>
       </ul>
     </div>

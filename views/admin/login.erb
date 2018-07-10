@@ -1,0 +1,33 @@
+<div class="row">
+   
+   <% unless @error.nil? %>
+       <p class="error-message"> <%= @error %> </p>
+   <% end %>
+
+   <center> <h3 class="login-header"> Admin Log in </h3> </center>
+
+   <div class="admin-login col l5 m5 push-m3 push-l3">
+    <form class="col s12" action="/admin/login" method="post" >
+      <div class="row">
+        <div class="input-field col s12 m10 l10 push-l1">
+          <input id="username" type="text" name="admin[username]" class="validate">
+          <label for="username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m10 l10 push-l1">
+          <input id="password" type="password" name="admin[password]" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <center>
+      <div class="row">
+        <div class="">
+          <input type="submit" class="btn grey darken-4" value="Log in">
+        </div>
+      </div>
+    </form>
+    </center>
+
+   </div>
+</div>

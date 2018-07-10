@@ -4,12 +4,12 @@ select {
 nav .brand-logo {
   padding-left: 15px !important; }
 
-.signup, .login {
+.signup, .login, .admin-login {
   position: relative;
   border: #000 solid;
   border-radius: 10px;
   padding-top: 2em; }
-  .signup form, .login form {
+  .signup form, .login form, .admin-login form {
     margin-top: 20px; }
 
 .error-message {

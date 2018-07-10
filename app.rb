@@ -105,6 +105,14 @@ class App < Sinatra::Application
         add_user_categories
     end
 
+    get '/admin/login' do
+        show_admin_login_page
+    end
+
+    post '/admin/login' do
+        login_admin(params[:admin])
+    end
+
     not_found do
         erb :not_found
     end

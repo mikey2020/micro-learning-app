@@ -1,0 +1,17 @@
+<div class="admin-dashboard">
+
+   <h2> Admin Dashboard </h2>
+
+
+   <% unless @users.nil? %>
+     <ul class="collection with-header">
+      <% @users.each do |user| %>
+        <li class="collection-header"><h4>Users</h4></li>
+        <li class="collection-item"><div> user.username <a href="#!" class="secondary-content"> delete </a></div></li>
+      <% end %>
+     </ul>
+   <% else %>
+       <h3> No users registered yet </h3>
+   <% end %>
+
+</div>

@@ -14,9 +14,13 @@ def login_admin(admin_details)
         session[:admin] = @admin
         session[:admin_id] = @admin.id
         logger.info session[:admin]
-        "You are logged in as admin"
+        redirect to('/admin/dashboard')
     else
         @error = "Invalid username or password"
         show_admin_login_page
     end
+end
+
+def show_dashboard
+    erb :"admin/dashboard"
 end

@@ -64,6 +64,18 @@ class App < Sinatra::Application
        end
     end
 
+    before '/user/login' do
+        if session[:admin_id]
+            redirect to('/admin/dashboard')
+        end
+    end
+
+    before '/admin/dashboard' do
+        if session[:admin_id].nil?
+            redirect to('/admin/login')
+        end
+    end
+
     get '/home' do
      show_home_page
     end
@@ -111,6 +123,10 @@ class App < Sinatra::Application
 
     post '/admin/login' do
         login_admin(params[:admin])
+    end
+
+    get '/admin/dashboard' do
+        show_dashboard
     end
 
     not_found do

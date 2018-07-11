@@ -1,14 +1,21 @@
-<center> <h3> Customize your learning </h3> </center>
+<div class="select-page">
+   <h3> Customize your learning </h3>
+   
+   <p> Choose your interests </p>
 
-<div class="container input-field col s12">
-   <form method="post" action="/categories">
-    <select multiple name="categories[]">
-    <option value="" disabled selected>Choose your interests</option>
-     <% @categories.uniq.each do |cat| %>
-      <option value=<%= cat %>> <%= cat %> </option>
-     <% end %>
-    </select>
+    <div class="row">
+    <form method="post" action="/categories">
+        <% @categories.uniq.each do |cat| %>
+            <p class="col l4">
+            <label>
+                <input type="checkbox" name="categories[]" value= <%= cat %> />
+                <span> <%= cat %> </span>
+            </label>
+            </p>
+        <% end %>
 
-    <center> <input type="submit" class="btn grey darken-4" value="submit"> </center>
-   <form>
+        <input type="submit" class="btn grey darken-4" value="submit"> 
+    </form>
+    </div>
 </div>
+        

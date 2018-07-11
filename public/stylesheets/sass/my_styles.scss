@@ -2,6 +2,10 @@ select{
     display: block !important;
 }
 
+nav .brand-logo {
+    padding-left: 15px !important;
+}
+
 %form-styles{
     position: relative;
     border: #000 solid;
@@ -14,11 +18,23 @@ select{
 
 }
 
+.error-message {
+  font-size: 17px;
+  background: #F2DEDE;
+  color: #B94A48;
+  border: 1px solid #EED3D7;
+  padding-right: 72px;
+}
+
 .signup{
     @extend %form-styles;
 }
 
 .login{
+    @extend %form-styles;
+}
+
+.admin-login{
     @extend %form-styles;
 }
 
@@ -48,4 +64,22 @@ select{
     a {
         padding-left: 137px !important;
     }
+}
+
+.select-page {
+    margin-left: 50px;
+
+    p {
+        font-size: 20px;
+    }
+
+    input[type="submit"] {
+
+        margin-top: 55px;
+
+    }
+}
+
+.admin-dashboard{
+    margin-left: 75px;
 }

@@ -22,4 +22,9 @@ RSpec.describe User, :type => :model do
     expect(user).to be_valid
     expect(user.username).to eq('boruto')
   end
+
+  after(:context) do
+    User.delete_all
+  end
+
 end

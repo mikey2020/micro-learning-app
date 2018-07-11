@@ -1,22 +1,22 @@
 <div class="row">
    
    <% unless @error.nil? %>
-       <center> <p class="error-message"> <%= @error %> </p> </center>
+       <p class="error-message"> <%= @error %> </p>
    <% end %>
 
-   <center> <h3 class="login-header"> Log in </h3> </center>
+   <center> <h3 class="login-header"> Admin Log in </h3> </center>
 
-   <div class="login col l5 m5 push-m3 push-l3">
-    <form class="col s12" action="/user/login" method="post" >
+   <div class="admin-login col l5 m5 push-m3 push-l3">
+    <form class="col s12" action="/admin/login" method="post" >
       <div class="row">
         <div class="input-field col s12 m10 l10 push-l1">
-          <input id="username" type="text" name="user[username]" class="validate">
+          <input id="username" type="text" name="admin[username]" class="validate">
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12 m10 l10 push-l1">
-          <input id="password" type="password" name="user[password]" class="validate">
+          <input id="password" type="password" name="admin[password]" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
@@ -28,8 +28,6 @@
       </div>
     </form>
     </center>
-
-    <p> New user <a href="/user/signup">Sign up</a>
 
    </div>
 </div>

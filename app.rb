@@ -25,7 +25,7 @@ class App < Sinatra::Application
     end
       
     configure :production do
-        set :database, { adapter: 'postgresql',  encoding: 'unicode', database: ENV['DATABASE_NAME'], pool: 5, username: ENV['DATABASE_USER'], password: ENV['DATABASE_PASSWORD'] }
+        db = URI.parse(ENV['DATABASE_URL'])
     end
 
     configure :test do
@@ -62,6 +62,18 @@ class App < Sinatra::Application
         end
 
        end
+    end
+
+    before '/admin/login' do
+        if session[:admin_id]
+            redirect to('/admin/dashboard')
+        end
+    end
+
+    before '/admin/dashboard' do
+        if session[:admin_id].nil?
+            redirect to('/admin/login')
+        end
     end
 
     get '/home' do
@@ -103,6 +115,18 @@ class App < Sinatra::Application
 
     post '/categories' do
         add_user_categories
+    end
+
+    get '/admin/login' do
+        show_admin_login_page
+    end
+
+    post '/admin/login' do
+        login_admin(params[:admin])
+    end
+
+    get '/admin/dashboard' do
+        show_dashboard
     end
 
     not_found do

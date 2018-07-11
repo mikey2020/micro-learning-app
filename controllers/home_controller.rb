@@ -3,7 +3,6 @@ require "#{current_dir}/models/category.rb"
 require "#{current_dir}/helpers/get_categories.rb"
 require 'dotenv/load'
 require 'news-api'
-require 'pry'
 
 def get_new_page
 
@@ -24,7 +23,6 @@ def get_new_page
                                                     language: 'en',
                                                     country: 'us')
             all_pages.push(top_headlines[0])
-            puts top_headlines
         rescue Exception => e
             @error = e.message
             erb :error_page

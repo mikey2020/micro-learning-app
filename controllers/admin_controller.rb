@@ -1,5 +1,7 @@
 require 'erb'
+current_dir = Dir.pwd
 
+require "#{current_dir}/models/user.rb"
 
 def show_admin_login_page
     erb :"admin/login"
@@ -13,7 +15,6 @@ def login_admin(admin_details)
     if @admin && @admin.is_admin
         session[:admin] = @admin
         session[:admin_id] = @admin.id
-        logger.info session[:admin]
         redirect to('/admin/dashboard')
     else
         @error = "Invalid username or password"
@@ -22,5 +23,10 @@ def login_admin(admin_details)
 end
 
 def show_dashboard
+    @users = User.all
     erb :"admin/dashboard"
+end
+
+def delete_user
+    @user = User.find(params[:user_id]).destroy
 end

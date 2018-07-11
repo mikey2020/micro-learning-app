@@ -129,6 +129,10 @@ class App < Sinatra::Application
         show_dashboard
     end
 
+    get '/delete/:user_id' do
+        delete_user
+    end
+
     not_found do
         erb :not_found
     end

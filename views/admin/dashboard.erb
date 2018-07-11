@@ -2,16 +2,19 @@
 
    <h2> Admin Dashboard </h2>
 
-
-   <% unless @users.nil? %>
-     <ul class="collection with-header">
-      <% @users.each do |user| %>
+   <div class="row">
+    <% unless @users.nil? %>
+        <ul class="collection with-header col l7 m7 s7">
         <li class="collection-header"><h4>Users</h4></li>
-        <li class="collection-item"><div> user.username <a href="#!" class="secondary-content"> delete </a></div></li>
-      <% end %>
-     </ul>
-   <% else %>
-       <h3> No users registered yet </h3>
-   <% end %>
+        <% @users.each do |user| %>
+            <li class="collection-item">
+              <div> <%= user.username %> <a href="/delete/<%= user.id %>" class="secondary-content"> delete </a></div>
+            </li>
+        <% end %>
+        </ul>
+    <% else %>
+        <h3> No users registered yet </h3>
+    <% end %>
+   </div>
 
 </div>

@@ -1,10 +1,9 @@
-current_dir = Dir.pwd
-Dir["#{current_dir}/models/*.rb"].each { |file| require file }
 require 'dotenv/load'
 require 'news-api'
 
-newsapi = News.new(ENV['API_KEY'])
+require_relative '../models/category.rb'
 
+newsapi = News.new(ENV['API_KEY'])
 
 sources = newsapi.get_sources(country: 'us', language: 'en')
 
@@ -14,5 +13,5 @@ sources.each do |source|
 end
 
 @categories.uniq.each do |category|
-    Category.create(name: category)
+  Category.create(name: category)
 end

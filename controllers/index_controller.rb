@@ -1,6 +1,5 @@
 require 'erb'
 
-
 def show_index
-    erb :index
+  erb :index
 end

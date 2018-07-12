@@ -2,10 +2,11 @@
     <div class="nav-wrapper grey darken-4">
       <a href="/" class="brand-logo">SMLA</a>
       <ul id="nav-mobile" class="right">
-        <% if session[:user_id] || session[:admin_id] %>
+        <% if session[:user_id] %>
           <li><a href="/user/logout">Logout</a></li>
+        <% elsif session[:admin_id] %>
+          <li><a href="/admin/logout">Logout</a></li>
         <% else %>
-          <li><a href="/admin/login"> Admin Log in </a></li>
           <li><a href="/user/login">Log in</a></li>
           <li><a href="/user/signup">Sign up</a></li>
         <% end %>

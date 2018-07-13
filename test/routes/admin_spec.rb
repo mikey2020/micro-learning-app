@@ -47,7 +47,7 @@ RSpec.describe App  do
 
     expect(last_response).to be_ok
     
-    expect(last_response.body).to include("Invalid username or password")
+    expect(last_response.body).to include("You are not authorised to view this page")
 
   end
 

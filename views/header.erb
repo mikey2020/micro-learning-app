@@ -4,7 +4,10 @@
       <ul id="nav-mobile" class="right">
         <% if session[:user_id] %> 
           <li><a href="/user/logout">Logout</a></li>
+        <% elsif   session[:admin_id] %>
+        <li><a href="/admin/logout">Logout</a></li>
         <% else %>
+          <li><a href="/admin/dashboard"> Admin </a></li>
           <li><a href="/user/login">Log in</a></li>
           <li><a href="/user/signup">Sign up</a></li>
         <% end %>

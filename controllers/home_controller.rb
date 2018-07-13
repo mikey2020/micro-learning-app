@@ -23,7 +23,6 @@ def get_new_page
                                                     language: 'en',
                                                     country: 'us')
             all_pages.push(top_headlines[0])
-            puts top_headlines
         rescue Exception => e
             @error = e.message
             erb :error_page

@@ -1,7 +1,25 @@
+require 'pry'
 require_relative '../spec_helper.rb'
 require_relative '../../app.rb'
+require_relative '../../models/user.rb'
+require_relative '../../models/user_category.rb'
 
 RSpec.describe App  do
+
+  before(:context) do
+    User.delete_all
+    UserCategory.delete_all
+  end
+
+  it 'should add user user to the database' do
+    post '/user/signup', params={ user: { username: "naruto", email: "naruto@email.com", password: "tester123" } }
+
+    expect(last_response).to be_redirect
+    follow_redirect!
+
+    expect(last_response).to be_ok
+    expect(last_response.body).to include("Customize your learning")
+  end
 
   it 'should display user sign up page' do
     get '/user/signup'
@@ -44,6 +62,19 @@ RSpec.describe App  do
     expect(last_response).to be_ok
     expect(last_response.body).to include("username")
     expect(last_response.body).to include("password")
+  end
+
+  it 'should login user' do
+    post '/user/login', params={ user: { username: "naruto", password: "tester123" } } 
+
+    expect(last_response).to be_redirect
+    follow_redirect!
+
+    expect(last_response).to be_redirect
+    follow_redirect!
+  
+    expect(last_response).to be_ok
+    expect(last_response.body).to include("Customize your learning")
   end
 
   it 'should display error message when username is empty' do

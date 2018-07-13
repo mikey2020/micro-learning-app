@@ -25,7 +25,7 @@ class App < Sinatra::Application
     end
       
     configure :production do
-        set :database, { adapter: 'postgresql',  encoding: 'unicode', database: ENV['DATABASE_NAME'], pool: 5, username: ENV['DATABASE_USER'], password: ENV['DATABASE_PASSWORD'] }
+        db = URI.parse(ENV['DATABASE_URL'])
     end
 
     configure :test do
@@ -64,7 +64,7 @@ class App < Sinatra::Application
        end
     end
 
-    before '/user/login' do
+    before '/admin/login' do
         if session[:admin_id]
             redirect to('/admin/dashboard')
         end

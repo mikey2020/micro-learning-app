@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_06_30_185824) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -22,9 +19,14 @@ ActiveRecord::Schema.define(version: 2018_06_30_185824) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string "link", null: false
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_pages_on_category_id"
+    t.string "name", null: false
+    t.text "description"
+    t.string "url", null: false
+    t.string "urlToImage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
   create_table "user_categories", force: :cascade do |t|
@@ -39,10 +41,9 @@ ActiveRecord::Schema.define(version: 2018_06_30_185824) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.boolean "is_admin", default: false
-    t.string "last_page"
+    t.integer "last_page"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "pages", "categories"
 end

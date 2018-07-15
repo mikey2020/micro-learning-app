@@ -1,8 +1,15 @@
 <div class="row">
-    <div class="col s12 m6 l6 push-l3 page-card">
+    <div class="col s12 m7 l7 push-l2 push-m2 page">
       <div class="card">
-        <div class="card-content white-text">
-          <span class="card-title"> <a href=<%= @page_url %>> Your page for the day</a></span>
+        <div class="card-image">
+          <img src=<%= @page.urlToImage %>>
+          <span class="card-title"> <%= @page.name %> </span>
+        </div>
+        <div class="card-content">
+          <p>  <%= @page.description %>  </p>
+        </div>
+        <div class="card-action">
+          <a href=<%= @page.url %>> Link to page</a>
         </div>
       </div>
     </div>

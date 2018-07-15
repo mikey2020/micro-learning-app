@@ -1,4 +1,3 @@
-require 'erb'
 require_relative '../models/user.rb'
 
 def delete_user
@@ -10,6 +9,13 @@ def show_admin_login_page
 end
 
 def show_dashboard
-  @users = User.all
+  users = User.all
+  @user = User.find(session[:admin_id])
+  @users = []
+  users.each do |user| 
+    unless user.username == @user.username
+      @users.append(user)
+    end
+  end
   erb :"admin/dashboard"
 end

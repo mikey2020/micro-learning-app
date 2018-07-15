@@ -29,12 +29,8 @@ nav .brand-logo {
 .welcome-message {
   margin-top: 69px !important; }
 
-.page-card {
-  margin-top: 50px; }
-
-.card {
-  background-color: #FFFDFD !important;
-  color: black !important; }
+.page {
+  margin-top: 40px; }
 
 .card-title a {
   padding-left: 137px !important; }

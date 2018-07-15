@@ -3,14 +3,29 @@
    <h2> Admin Dashboard </h2>
 
    <div class="row">
-    <% unless @users.nil? %>
+    <% unless @users == [] %>
         <ul class="collection with-header col l7 m7 s7">
         <li class="collection-header"><h4>Users</h4></li>
-        <% @users.each do |user| %>
-            <li class="collection-item">
-              <div> <%= user.username %> <a href="/delete/<%= user.id %>" class="secondary-content"> delete </a></div>
-            </li>
-        <% end %>
+          <table class="highlight">
+            <thead>
+              <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Admin</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+             <% @users.each do |user| %>
+                <tr>
+                    <td> <%= user.username %> </td>
+                    <td> <%= user.email %> </td>
+                    <td> <%= user. is_admin %></td>
+                    <td> <a href="/delete/<%= user.id %>" class="btn red darken-4"> delete </a> </td>
+                </tr>
+             <% end %>
+            </tbody>
+          </table> 
         </ul>
     <% else %>
         <h3> No users registered yet </h3>

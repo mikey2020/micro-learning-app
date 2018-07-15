@@ -32,14 +32,7 @@ class App < Sinatra::Application
   end
     
   configure :production do
-    set :database, { 
-      adapter: 'postgresql',
-      encoding: 'unicode',
-      database: ENV['DATABASE_NAME'],
-      pool: 5,
-      username: ENV['DATABASE_USER'],
-      password: ENV['DATABASE_PASSWORD']
-    }
+    db = URI.parse(ENV['DATABASE_URL'])
   end
 
   configure :test do
@@ -48,10 +41,8 @@ class App < Sinatra::Application
 
   before '/home' do
     authenticate
-
     if session[:user_id]
       categories = get_user_categories
-
       redirect to('/categories') if categories == []
     end
   end
@@ -103,7 +94,7 @@ class App < Sinatra::Application
   end
 
   get '/user/logout' do
-    session[:user_id] = nil
+    session.clear
     redirect to('/user/login')
   end
 

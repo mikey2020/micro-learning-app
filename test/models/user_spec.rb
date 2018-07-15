@@ -6,6 +6,7 @@ require_relative '../../models/user.rb'
 RSpec.describe User, :type => :model do
 
   before(:context) do
+    Page.delete_all
     User.delete_all
   end
 

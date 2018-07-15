@@ -1,7 +1,7 @@
 require 'dotenv/load'
 require 'news-api'
 
-require_relative '../models/category.rb'
+require_relative '../models/page.rb'
 require_relative '../helpers/get_categories.rb'
 
 def get_new_page
@@ -23,13 +23,28 @@ def get_new_page
   end
 
   unless all_pages.nil?
-    @page_url = all_pages.sample.url
-    while @page_url == @user.last_page
-      @page_url = all_pages.sample.url
+    @page = all_pages.sample
+    begin
+      new_page = Page.create(
+                  { 
+                    name: @page.name, 
+                    description: @page.description, 
+                    url: @page.url,
+                    urlToImage: @page.urlToImage,
+                    user_id: @user.id
+                  }
+                )
+      new_page.save
+    rescue
+      saved_page = Page.find(@user.last_page) unless @user.last_page.nil?
+      while @page.url == saved_page.url
+        @page = all_pages.sample
+      end
     end
   end
-
-  @user.update(last_page: @page_url)
+  
+  
+  @user.update(last_page: new_page.id) unless new_page.nil?
 
   erb :home
 
@@ -41,7 +56,7 @@ def show_home_page
   if result[:hour] >= 24 || @user.last_page.nil?
     get_new_page
   else 
-    @page_url = @user.last_page
+    @page = Page.find(@user.last_page)
     erb :home
   end
 end

@@ -2,6 +2,7 @@ require 'sinatra/activerecord'
 
 # User model
 class User < ActiveRecord::Base
+  has_many :pages, dependent: :destroy
   has_many :user_categories
   has_many :categories, through: :user_categories
 

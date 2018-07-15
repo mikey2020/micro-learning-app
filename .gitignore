@@ -1,5 +1,4 @@
 .env
 .sass-cache/
 .DS_Store
-.sqlite3
 db/*.sqlite3

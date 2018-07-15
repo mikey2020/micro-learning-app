@@ -2,12 +2,13 @@
 
   <center> <h3 class="signup-header"> Sign up for Super learning </h3> </center>
 
+  <% unless @errors.nil? %>
+    <% @errors.each do |key,value|%>
+      <p class="error-message"> <%= key %> <%= value[0] %> </p>
+    <% end %>
+  <% end %>
+
   <div class="signup col m6 s10 l6 push-l3 push-m3">
-   <% unless @errors.nil? %>
-      <% @errors.each do |key,value|%>
-         <p class="error_message"> <%= key %> <%= value[0] %> </p>
-      <% end %>
-   <% end %>
     <form class="col s12 m10 push-m1" action="/user/signup" method="post" >
       <div class="row">
         <div class="input-field col s12 m10 l10">
@@ -33,9 +34,5 @@
         </div>
       </div>
     </form>
-    
-    <div>
-      <span class="input-field" > Already a user <a href="/user/login">Log in</a> </span>
-    <div>
   </div>
 </div>

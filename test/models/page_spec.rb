@@ -4,8 +4,13 @@ require_relative '../../app.rb'
 require_relative '../../models/page.rb'
 
 
-RSpec.describe Category, :type => :model do
+RSpec.describe Page, :type => :model do
   it "is valid with valid attributes" do
-    expect(Page.new).to be_valid
+    page = Page.new({
+      name: 'test-page',
+      url: 'test-page-url'
+    })
+    page.save
+    expect(page).to be_valid
   end
 end

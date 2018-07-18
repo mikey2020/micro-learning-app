@@ -26,13 +26,11 @@ def get_new_page
     @page = all_pages.sample
     begin
       new_page = Page.create(
-                  { 
-                    name: @page.name, 
-                    description: @page.description, 
-                    url: @page.url,
-                    urlToImage: @page.urlToImage,
-                    user_id: @user.id
-                  }
+                  name: @page.name, 
+                  description: @page.description, 
+                  url: @page.url,
+                  urlToImage: @page.urlToImage,
+                  user_id: @user.id
                 )
       new_page.save
     rescue
@@ -47,7 +45,6 @@ def get_new_page
   @user.update(last_page: new_page.id) unless new_page.nil?
 
   erb :home
-
 end
 
 def show_home_page

@@ -12,7 +12,7 @@ def show_dashboard
   users = User.all
   @user = User.find(session[:admin_id])
   @users = []
-  users.each do |user| 
+  users.each do |user|
     unless user.username == @user.username
       @users.append(user)
     end

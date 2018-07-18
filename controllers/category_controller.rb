@@ -13,6 +13,6 @@ def add_user_categories
       category_id: @category.id
     )
   end
-    
+  
   redirect to('/home')
-end 
+end

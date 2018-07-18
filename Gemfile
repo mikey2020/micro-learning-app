@@ -1,13 +1,11 @@
 # Gemfile
 source 'https://rubygems.org'
 
-
 gem 'bcrypt'
 gem 'dotenv'
 gem 'pg'
 gem 'news-api'
 gem 'rake'
-gem 'rubocop', '~> 0.58.1', require: false
 gem 'sass'
 gem 'sinatra'   
 gem 'sinatra-activerecord'
@@ -17,6 +15,7 @@ gem 'time_diff'
 group :development do
     gem 'pry'
     gem 'shotgun'
+    gem 'rubocop', '~> 0.58.1', require: false
 end
 
 group :test, :development do

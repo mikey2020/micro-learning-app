@@ -18,11 +18,9 @@ def login_admin(admin_details)
   )
 end
 
-
 def authorize_user(params, type, error_message)
   @user = User.find_by(username: params[:username])
               .try(:authenticate, params[:password])
-
   if @user
     session["#{type}_id"] = @user.id
     if type == 'admin'

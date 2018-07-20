@@ -1,5 +1,3 @@
 def authenticate
-  if session[:user_id].nil?
-    redirect to('/user/login')
-  end
+  redirect to('/user/login') unless session[:user_id]
 end

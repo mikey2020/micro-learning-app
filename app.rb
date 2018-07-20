@@ -21,52 +21,55 @@ class App < Sinatra::Application
   set :session_secret, SecureRandom.hex(64)
 
   configure :development do
-    set :database, {
-      adapter: 'postgresql',
-      encoding: 'unicode',
-      database: ENV['DATABASE_NAME'],
-      pool: 5,
-      username: ENV['DATABASE_USER'],
-      password: ENV['DATABASE_PASSWORD']
-    }
+    set :database,
+        adapter: 'postgresql',
+        encoding: 'unicode',
+        database: ENV['DATABASE_NAME'],
+        pool: 5,
+        username: ENV['DATABASE_USER'],
+        password: ENV['DATABASE_PASSWORD']
   end
-    
+
   configure :production do
-    db = URI.parse(ENV['DATABASE_URL'])
+    URI.parse(ENV['DATABASE_URL'])
   end
 
   configure :test do
-    set :database, { adapter: 'sqlite3',  encoding: 'unicode', database: 'db/test.sqlite3' , pool: 5 }
+    set :database,
+        adapter: 'sqlite3',
+        encoding: 'unicode',
+        database: 'db/test.sqlite3',
+        pool: 5
   end
 
   before '/home' do
     authenticate
-    if session[:user_id]
-      categories = get_user_categories
+    if user_logged_in?
+      categories = user_categories
       redirect to('/categories') if categories == []
     end
   end
 
   before '/user/login' do
-    redirect to('/home') if session[:user_id]
+    redirect to('/home') if user_logged_in?
   end
 
   before '/categories' do
     authenticate
 
     if session[:user_id]
-      categories = get_user_categories
+      categories = user_categories
 
       redirect to('/home') unless categories == []
     end
   end
 
-  before '/user/login' do
-    redirect to('/admin/dashboard') if session[:admin_id]
+  before '/admin/login' do
+    redirect to('/admin/dashboard') if admin?
   end
 
   before '/admin/dashboard' do
-    redirect to('/admin/login') if session[:admin_id].nil?
+    redirect to('/admin/login') unless admin?
   end
 
   get '/home' do
@@ -103,7 +106,7 @@ class App < Sinatra::Application
   end
 
   get '/categories' do
-    get_categories
+    categories
   end
 
   post '/categories' do
@@ -130,5 +133,5 @@ class App < Sinatra::Application
     erb :not_found
   end
 
-  run! if app_file == $0
+  run! if app_file == $PROGRAM_NAME
 end

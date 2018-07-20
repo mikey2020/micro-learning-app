@@ -12,7 +12,7 @@ RSpec.describe App do
     UserCategory.create(user_id: @user.id, category_id: 1)
   end
 
-  it 'should display user"s page for the day' do
+  it 'displays user"s page for the day' do
     get '/home', {}, 'rack.session' => { user_id: @user.id }
 
     expect(last_response.body).to include('card')

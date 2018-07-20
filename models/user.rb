@@ -12,13 +12,13 @@ class User < ActiveRecord::Base
             length: { minimum: 5 },
             format: {
               with: /\A^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{5,50}\z/,
-              message: 'must be an alphanumeric'
+              message: 'must be an alphanumeric',
             },
             on: :create
   validates :email,
             uniqueness: true,
             format: {
               with: /\A[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/,
-              message: 'must be valid'
+              message: 'must be valid',
             }
 end

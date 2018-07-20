@@ -1,6 +1,5 @@
 require_relative '../spec_helper.rb'
 require_relative '../../app.rb'
-
 require_relative '../../models/category.rb'
 
 RSpec.describe Category do

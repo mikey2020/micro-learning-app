@@ -8,7 +8,7 @@ class CreatePages < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :url, null: false
       t.string :urlToImage
-      
+
       t.timestamps
       t.references :user, foreign_key: true
     end

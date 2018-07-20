@@ -11,11 +11,14 @@ gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sysrandom'
 gem 'time_diff'
+gem 'sidekiq'
+gem 'pony'
+gem 'sidekiq-scheduler'
 
 group :development do
     gem 'pry'
-    gem 'shotgun'
     gem 'rubocop', '~> 0.58.1', require: false
+    gem 'shotgun'
 end
 
 group :test, :development do

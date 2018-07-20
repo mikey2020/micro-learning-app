@@ -3,7 +3,7 @@ require_relative '../../app.rb'
 
 require_relative '../../models/user_category.rb'
 
-RSpec.describe UserCategory, type: model do
+RSpec.describe UserCategory do
   it 'is valid with valid attributes' do
     user_category = UserCategory.new(
       category_id: 1,

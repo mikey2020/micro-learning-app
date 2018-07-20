@@ -10,8 +10,11 @@ Dir["#{current_dir}/models/*.rb"].each { |file| require file }
 Dir["#{current_dir}/controllers/*.rb"].each { |file| require file }
 Dir["#{current_dir}/helpers/*.rb"].each { |file| require file }
 
+require_relative './workers/email_scheduler.rb'
+
 # Sinatra application
 class App < Sinatra::Application
+
   set :show_exceptions, :after_handler
 
   # set :sessions, true
@@ -42,7 +45,7 @@ class App < Sinatra::Application
   before '/home' do
     authenticate
     if session[:user_id]
-      categories = get_user_categories
+      categories = get_user_categories(session[:user_id])
       redirect to('/categories') if categories == []
     end
   end
@@ -55,7 +58,7 @@ class App < Sinatra::Application
     authenticate
 
     if session[:user_id]
-      categories = get_user_categories
+      categories = get_user_categories(session[:user_id])
 
       redirect to('/home') unless categories == []
     end

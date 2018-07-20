@@ -48,8 +48,7 @@ RSpec.describe App do
     post '/admin/login', params = { admin: { username: '', password: '' } }
 
     expect(last_response).to be_ok
-    expect(last_response.body).to
-    include('You are not authorised to view this page')
+    expect(last_response.body).to include('You are not authorised to view this page')
   end
 
   after(:context) do

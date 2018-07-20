@@ -3,7 +3,7 @@ require_relative '../../app.rb'
 
 require_relative '../../models/page.rb'
 
-RSpec.describe Page, type: model do
+RSpec.describe Page do
   it 'is valid with valid attributes' do
     page = Page.new(
       name: 'test-page',

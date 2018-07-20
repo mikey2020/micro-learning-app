@@ -1,0 +1,15 @@
+send_email:
+  cron: '00 10 * * *'   # Runs once per 2 minute
+#    every: 2m
+  :queues:
+#      - critical
+    - default
+  class: SendEmail
+  description: "This job sends email to user"
+  :concurrency: 5
+  :timeout: 30
+  :verbose: false
+  production:
+    :concurrency: 6
+  staging:
+    :concurrency: 5

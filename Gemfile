@@ -20,6 +20,9 @@ group :development do
 end
 
 group :test, :development do
+    gem 'coveralls', require: false
+    gem 'simplecov', require: false
+    gem 'simplecov-console', require: false
     gem 'rack-test', require: 'rack/test'
     gem 'rspec'
     gem 'sqlite3'

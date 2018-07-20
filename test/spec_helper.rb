@@ -1,9 +1,11 @@
 require 'rack/test'
 require 'rspec'
+require 'coveralls'
+require 'simplecov'
+require 'simplecov-console'
+
 
 ENV['RACK_ENV'] = 'test'
-
-# ActiveRecord::Migration.maintain_test_schema!
 
 module RSpecMixin
   include Rack::Test::Methods
@@ -13,6 +15,16 @@ module RSpecMixin
   end
 end
 
-RSpec.configure do |c|
-  c.include RSpecMixin
+RSpec.configure do |c| 
+  c.include RSpecMixin 
 end
+
+Coveralls.wear!
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::Console,
+    # Want a nice code coverage website? Uncomment this next line!
+    SimpleCov::Formatter::HTMLFormatter
+  ]
+)
+SimpleCov.start

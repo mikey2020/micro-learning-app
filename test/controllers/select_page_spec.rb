@@ -25,7 +25,23 @@ RSpec.describe App do
     expect(last_response.body).to include('science')
   end
 
+  it 'should display select categories page with all categories' do
+    post '/categories', params={
+      categories: [
+        'general',
+        'business'
+      ]
+    }, { 'rack.session' => { user_id: @user.id } }
+    
+    
+    expect(last_response).to be_redirect
+    follow_redirect!
+
+    expect(last_response).to be_ok
+  end
+
   after(:context) do
+    Page.delete_all
     User.delete_all
   end
 end

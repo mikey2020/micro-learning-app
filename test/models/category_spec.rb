@@ -3,7 +3,7 @@ require_relative '../../app.rb'
 
 require_relative '../../models/category.rb'
 
-RSpec.describe Category, type: model do
+RSpec.describe Category do
   it 'is valid with valid attributes' do
     expect(Category.new).to be_valid
   end

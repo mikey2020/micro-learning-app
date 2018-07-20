@@ -48,9 +48,19 @@ RSpec.describe App do
     post '/admin/login', params = { admin: { username: '', password: '' } }
 
     expect(last_response).to be_ok
-    expect(last_response.body).to
-    include('You are not authorised to view this page')
+    expect(last_response.body).to include('You are not authorised to view this page')
   end
+
+  it 'should allow admin delete user' do
+    @another_user = User.new({ username: 'madara', email: 'madara@uchiha.com', password: 'uchiha123' })
+    @another_user.save
+
+    get "/delete/#{@another_user.id}"
+  
+
+    expect(last_response).to be_ok
+  end
+
 
   after(:context) do
     Page.delete_all

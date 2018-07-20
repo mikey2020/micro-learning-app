@@ -10,40 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_30_185824) do
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+ActiveRecord::Schema.define(version: 20_180_630_185_824) do
+  create_table 'categories', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "pages", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description"
-    t.string "url", null: false
-    t.string "urlToImage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_pages_on_user_id"
+  create_table 'pages', force: :cascade do |t|
+    t.string 'name', null: false
+    t.text 'description'
+    t.string 'url', null: false
+    t.string 'urlToImage'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'user_id'
+    t.index ['user_id'], name: 'index_pages_on_user_id'
   end
 
-  create_table "user_categories", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'user_categories', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'category_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username", null: false
-    t.string "email", null: false
-    t.string "password_digest", null: false
-    t.boolean "is_admin", default: false
-    t.integer "last_page"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'username', null: false
+    t.string 'email', null: false
+    t.string 'password_digest', null: false
+    t.boolean 'is_admin', default: false
+    t.integer 'last_page'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

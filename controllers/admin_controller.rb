@@ -10,12 +10,10 @@ end
 
 def show_dashboard
   users = User.all
-  @user = User.find(session[:admin_id])
+  @user = User.find(session[:user_id])
   @users = []
   users.each do |user|
-    unless user.username == @user.username
-      @users.append(user)
-    end
+    @users.append(user) unless user.username == @user.username
   end
   erb :"admin/dashboard"
 end

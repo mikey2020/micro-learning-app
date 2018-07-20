@@ -3,26 +3,29 @@ source 'https://rubygems.org'
 
 gem 'bcrypt'
 gem 'dotenv'
-gem 'pg'
 gem 'news-api'
+gem 'pg'
 gem 'rake'
 gem 'sass'
-gem 'sinatra'   
+gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sysrandom'
 gem 'time_diff'
 
 group :development do
-    gem 'pry'
-    gem 'shotgun'
-    gem 'rubocop', '~> 0.58.1', require: false
+  gem 'pry'
+  gem 'rubocop'
+  gem 'rubocop-airbnb'
+  gem 'shotgun'
 end
 
 group :test, :development do
-    gem 'coveralls', require: false
-    gem 'simplecov', require: false
-    gem 'simplecov-console', require: false
-    gem 'rack-test', require: 'rack/test'
-    gem 'rspec'
-    gem 'sqlite3'
+  gem 'coveralls', require: false
+  gem 'factory_bot', '~> 4.0'
+  gem 'rack-test', require: 'rack/test'
+  gem 'rspec'
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'sqlite3'
 end

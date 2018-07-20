@@ -6,6 +6,6 @@ class CreateUserCategories < ActiveRecord::Migration[5.2]
       t.integer :category_id
 
       t.timestamps null: false
-    end 
+    end
   end
 end

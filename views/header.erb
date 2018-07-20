@@ -2,7 +2,7 @@
     <div class="nav-wrapper grey darken-4">
       <a href="/" class="brand-logo">SMLA</a>
       <ul id="nav-mobile" class="right">
-        <% if session[:user_id] || session[:admin_id] %> 
+        <% if user_logged_in? %> 
           <li><a href="/user/logout">Logout</a></li>
         <% else %>
           <li><a href="/admin/login"> Admin </a></li>

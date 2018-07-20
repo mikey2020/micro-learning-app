@@ -17,9 +17,9 @@ end
   Category.create(name: category)
 end
 
-User.create({
+User.create(
   username: 'admin',
   email: 'admin@gmail.com',
   password: 'admin123',
   is_admin: true
-})
+)

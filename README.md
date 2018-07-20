@@ -1,3 +1,8 @@
+[![Coverage Status](https://coveralls.io/repos/github/mikey2020/micro-learning-app/badge.svg?branch=ch-refactor-tests)](https://coveralls.io/github/mikey2020/micro-learning-app?branch=develop)
+
+[![Build Status](https://travis-ci.org/mikey2020/micro-learning-app.svg?branch=develop)](https://travis-ci.org/mikey2020/micro-learning-app)
+
+
 # Super Micro Learning Application
 
 SMLA is a responsive web application that sends you one page per day about something you want to learn. Could be: a new Language, a random Wikipedia page, React documentation, a page from the CIA World Factbook, anything! 

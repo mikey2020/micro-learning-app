@@ -3,6 +3,7 @@ require_relative '../../app.rb'
 require_relative '../../models/user.rb'
 require_relative '../../models/page.rb'
 
+
 RSpec.describe App  do
 
   before(:context) do
@@ -52,6 +53,17 @@ RSpec.describe App  do
     expect(last_response.body).to include('You are not authorised to view this page')
 
   end
+
+  it 'should allow admin delete user' do
+    @another_user = User.new({ username: 'madara', email: 'madara@uchiha.com', password: 'uchiha123' })
+    @another_user.save
+
+    get "/delete/#{@another_user.id}"
+  
+
+    expect(last_response).to be_ok
+  end
+
 
 
 end
